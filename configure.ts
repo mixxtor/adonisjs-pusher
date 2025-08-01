@@ -27,6 +27,6 @@ export async function configure(command: ConfigureCommand) {
    * Register provider
    */
   await codemods.updateRcFile((rcFile) => {
-    rcFile.addProvider('@mixxtor/adonisjs-pusher/providers/pusher_provider')
+    rcFile.addProvider('@mixxtor/adonisjs-pusher/provider')
   })
 }

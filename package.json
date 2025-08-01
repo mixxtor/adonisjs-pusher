@@ -20,6 +20,7 @@
     "clean": "del-cli build",
     "copy:templates": "copyfiles \"stubs/**/*.stub\" build",
     "build": "npm run clean && tsc",
+    "postbuild": "npm run copy:templates",
     "prepublishOnly": "npm run build",
     "typecheck": "tsc --noEmit",
     "lint": "eslint . --ext=.ts",
