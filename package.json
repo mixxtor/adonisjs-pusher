@@ -1,6 +1,6 @@
 {
   "name": "@mixxtor/adonisjs-pusher",
-  "version": "0.0.7-beta.2",
+  "version": "0.0.7",
   "description": "AdonisJS provider for Pusher real-time messaging",
   "engines": {
     "node": ">=20.6.0"
