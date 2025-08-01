@@ -2,8 +2,16 @@
   "name": "@mixxtor/adonisjs-pusher",
   "version": "0.0.7-beta.0",
   "description": "AdonisJS provider for Pusher real-time messaging",
+  "engines": {
+    "node": ">=20.6.0"
+  },
+  "main": "build/index.js",
   "type": "module",
-  "main": "./build/index.js",
+  "files": [
+    "build",
+    "!build/bin",
+    "!build/tests"
+  ],
   "exports": {
     ".": "./build/index.js",
     "./types": "./build/src/types/index.js",
@@ -11,29 +19,27 @@
     "./services/main": "./build/services/main.js",
     "./provider": "./build/providers/pusher_provider.js"
   },
-  "files": [
-    "build",
-    "configure.js",
-    "instructions.md"
-  ],
   "scripts": {
     "clean": "del-cli build",
     "copy:templates": "copyfiles \"stubs/**/*.stub\" build",
-    "build": "npm run clean && tsc",
-    "postbuild": "npm run copy:templates",
-    "prepublishOnly": "npm run build",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint . --ext=.ts",
+    "lint": "eslint .",
     "format": "prettier --write .",
-    "test": "c8 npm run quick:test",
     "quick:test": "node --import=./tsnode.esm.js --enable-source-maps bin/test.ts",
+    "pretest": "npm run lint",
+    "test": "c8 npm run quick:test",
+    "prebuild": "npm run lint && npm run clean",
+    "build": "tsc",
+    "postbuild": "npm run copy:templates",
     "release": "release-it",
     "release:patch": "release-it patch",
     "release:minor": "release-it minor",
     "release:major": "release-it major",
     "release:beta": "release-it --preRelease=beta",
     "release:alpha": "release-it --preRelease=alpha",
-    "release:dry": "release-it --dry-run"
+    "release:dry": "release-it --dry-run",
+    "version": "npm run build",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "adonisjs",
@@ -42,11 +48,8 @@
     "websockets",
     "provider"
   ],
-  "author": "Your Name",
+  "author": "Mixxtor",
   "license": "MIT",
-  "engines": {
-    "node": ">=18.16.0"
-  },
   "devDependencies": {
     "@adonisjs/assembler": "^7.8.2",
     "@adonisjs/core": "^6.19.0",
@@ -64,13 +67,22 @@
     "eslint": "^9.32.0",
     "prettier": "^3.6.2",
     "release-it": "^19.0.4",
+    "tsup": "^8.5.0",
     "typescript": "^5.9.2"
+  },
+  "peerDependencies": {
+    "@adonisjs/core": "^6.19.0"
   },
   "dependencies": {
     "pusher": "^5.2.0"
   },
-  "peerDependencies": {
-    "@adonisjs/core": "^6.0.0"
+  "homepage": "https://github.com/mixxtor/adonisjs-pusher#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mixxtor/adonisjs-pusher.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mixxtor/adonisjs-pusher/issues"
   },
   "publishConfig": {
     "access": "public",
@@ -114,14 +126,5 @@
       "tests/**"
     ]
   },
-  "eslintConfig": {
-    "extends": "@adonisjs/eslint-config/package"
-  },
-  "prettier": "@adonisjs/prettier-config",
-  "adonisjs": {
-    "types": "@mixxtor/adonisjs-pusher",
-    "providers": [
-      "@mixxtor/adonisjs-pusher/provider"
-    ]
-  }
+  "prettier": "@adonisjs/prettier-config"
 }

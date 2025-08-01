@@ -12,7 +12,4 @@ export { stubsRoot } from './stubs/main.js'
 export { defineConfig } from './src/config/define_config.js'
 
 // Types
-export type {
-  PusherConfig,
-} from './src/types/pusher.js'
-
+export type { PusherConfig } from './src/types/pusher.js'
