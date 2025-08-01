@@ -17,11 +17,15 @@ import { stubsRoot } from './stubs/main.js'
 
 export async function configure(command: ConfigureCommand) {
   const codemods = await command.createCodemods()
+  const project = await codemods.getTsMorphProject()
 
   /**
-   * Publish config file
+   * Publish config file if it doesn't exist
    */
-  await codemods.makeUsingStub(stubsRoot, 'config/pusher.stub', {})
+  const configExists = project?.getSourceFile('config/currency.ts')
+  if (!configExists) {
+    await codemods.makeUsingStub(stubsRoot, 'config/currency.stub', {})
+  }
 
   /**
    * Register provider
