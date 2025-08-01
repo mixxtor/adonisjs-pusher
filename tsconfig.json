@@ -1,9 +1,9 @@
 {
   "extends": "@adonisjs/tsconfig/tsconfig.package.json",
   "compilerOptions": {
+    "rootDir": "./",
     "outDir": "./build",
-    "rootDir": "./src"
-  },
-  "include": ["src/**/*"],
-  "exclude": ["tests/**/*", "node_modules/**/*"]
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  }
 }
