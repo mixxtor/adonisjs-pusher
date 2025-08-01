@@ -1,0 +1,122 @@
+{
+  "name": "@mixxtor/adonisjs-pusher",
+  "version": "0.0.1",
+  "description": "AdonisJS provider for Pusher real-time messaging",
+  "type": "module",
+  "main": "./build/index.js",
+  "exports": {
+    ".": "./build/index.js",
+    "./config": "./build/config/pusher.js",
+    "./provider": "./build/providers/pusher_provider.js"
+  },
+  "files": [
+    "build",
+    "configure.js",
+    "instructions.md"
+  ],
+  "scripts": {
+    "clean": "del-cli build",
+    "build": "npm run clean && tsc",
+    "prepublishOnly": "npm run build",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --ext=.ts",
+    "format": "prettier --write .",
+    "test": "c8 npm run quick:test",
+    "quick:test": "node --import=./tsnode.esm.js --enable-source-maps bin/test.ts",
+    "release": "release-it",
+    "release:patch": "release-it patch",
+    "release:minor": "release-it minor",
+    "release:major": "release-it major",
+    "release:beta": "release-it --preRelease=beta",
+    "release:alpha": "release-it --preRelease=alpha",
+    "release:dry": "release-it --dry-run"
+  },
+  "keywords": [
+    "adonisjs",
+    "pusher",
+    "realtime",
+    "websockets",
+    "provider"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.16.0"
+  },
+  "devDependencies": {
+    "@adonisjs/assembler": "^7.8.2",
+    "@adonisjs/core": "^6.19.0",
+    "@adonisjs/eslint-config": "^2.1.0",
+    "@adonisjs/prettier-config": "^1.4.5",
+    "@adonisjs/tsconfig": "^1.4.1",
+    "@japa/assert": "^4.1.1",
+    "@japa/runner": "^4.3.0",
+    "@release-it/conventional-changelog": "^10.0.1",
+    "@swc/core": "^1.13.3",
+    "@types/node": "^24.1.0",
+    "c8": "^10.1.3",
+    "del-cli": "^6.0.0",
+    "eslint": "^9.32.0",
+    "prettier": "^3.6.2",
+    "release-it": "^19.0.4",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "pusher": "^5.2.0"
+  },
+  "peerDependencies": {
+    "@adonisjs/core": "^6.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "release-it": {
+    "git": {
+      "requireCleanWorkingDir": true,
+      "requireUpstream": true,
+      "commitMessage": "chore(release): ${version}",
+      "tagAnnotation": "v${version}",
+      "push": true,
+      "tagName": "v${version}"
+    },
+    "github": {
+      "release": true,
+      "releaseName": "Release v${version}",
+      "releaseNotes": null,
+      "autoGenerate": true,
+      "draft": false,
+      "preRelease": false
+    },
+    "npm": {
+      "publish": true,
+      "skipChecks": true
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": {
+          "name": "angular"
+        }
+      }
+    }
+  },
+  "c8": {
+    "reporter": [
+      "text",
+      "html"
+    ],
+    "exclude": [
+      "tests/**"
+    ]
+  },
+  "eslintConfig": {
+    "extends": "@adonisjs/eslint-config/package"
+  },
+  "prettier": "@adonisjs/prettier-config",
+  "adonisjs": {
+    "types": "@mixxtor/adonisjs-pusher",
+    "providers": [
+      "@mixxtor/adonisjs-pusher/provider"
+    ]
+  }
+}
