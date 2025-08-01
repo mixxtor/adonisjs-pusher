@@ -18,6 +18,7 @@
   ],
   "scripts": {
     "clean": "del-cli build",
+    "copy:templates": "copyfiles \"stubs/**/*.stub\" build",
     "build": "npm run clean && tsc",
     "prepublishOnly": "npm run build",
     "typecheck": "tsc --noEmit",
