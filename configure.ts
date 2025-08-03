@@ -22,9 +22,9 @@ export async function configure(command: ConfigureCommand) {
   /**
    * Publish config file if it doesn't exist
    */
-  const configExists = project?.getSourceFile('config/currency.ts')
+  const configExists = project?.getSourceFile('config/pusher.ts')
   if (!configExists) {
-    await codemods.makeUsingStub(stubsRoot, 'config/currency.stub', {})
+    await codemods.makeUsingStub(stubsRoot, 'config/pusher.stub', {})
   }
 
   /**

@@ -15,7 +15,6 @@
   "exports": {
     ".": "./build/index.js",
     "./types": "./build/src/types/index.js",
-    "./config": "./build/config/pusher.js",
     "./services/main": "./build/services/main.js",
     "./provider": "./build/providers/pusher_provider.js"
   },
