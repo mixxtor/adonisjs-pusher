@@ -8,7 +8,7 @@
  */
 
 import app from '@adonisjs/core/services/app'
-import Pusher from 'pusher'
+import type Pusher from 'pusher'
 
 /**
  * Currency service with full type inference

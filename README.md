@@ -17,6 +17,7 @@ node ace configure @mixxtor/adonisjs-pusher
 ```
 
 This will:
+
 - Create `config/pusher.ts` configuration file
 - Add Pusher environment variables to `start/env.ts`
 - Register the provider in `adonisrc.ts`
@@ -47,12 +48,12 @@ export default class ChatController {
   @inject()
   async sendMessage({ request }: HttpContext, pusher: Pusher) {
     const { message, channel } = request.only(['message', 'channel'])
-    
+
     await pusher.trigger(channel, 'new-message', {
       message,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     })
-    
+
     return { success: true }
   }
 }
@@ -64,7 +65,7 @@ export default class ChatController {
 const pusher = await app.container.make('pusher')
 
 await pusher.trigger('my-channel', 'my-event', {
-  message: 'Hello World!'
+  message: 'Hello World!',
 })
 ```
 

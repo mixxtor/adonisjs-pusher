@@ -50,29 +50,29 @@
   "author": "Mixxtor",
   "license": "MIT",
   "devDependencies": {
-    "@adonisjs/assembler": "^7.8.2",
-    "@adonisjs/core": "^6.19.0",
-    "@adonisjs/eslint-config": "^2.1.0",
+    "@adonisjs/assembler": "^8.0.0",
+    "@adonisjs/core": "^7.0.0",
+    "@adonisjs/eslint-config": "^3.0.0",
     "@adonisjs/prettier-config": "^1.4.5",
-    "@adonisjs/tsconfig": "^1.4.1",
-    "@japa/assert": "^4.1.1",
-    "@japa/runner": "^4.3.0",
-    "@release-it/conventional-changelog": "^10.0.1",
-    "@swc/core": "^1.13.3",
-    "@types/node": "^24.1.0",
-    "c8": "^10.1.3",
+    "@adonisjs/tsconfig": "^2.0.0",
+    "@japa/assert": "^4.2.0",
+    "@japa/runner": "^5.3.0",
+    "@release-it/conventional-changelog": "^10.0.5",
+    "@swc/core": "^1.15.13",
+    "@types/node": "^25.3.1",
+    "c8": "^11.0.0",
     "copyfiles": "^2.4.1",
-    "del-cli": "^6.0.0",
-    "eslint": "^9.32.0",
-    "prettier": "^3.6.2",
-    "release-it": "^19.0.4",
-    "typescript": "^5.9.2"
+    "del-cli": "^7.0.0",
+    "eslint": "^10.0.2",
+    "prettier": "^3.8.1",
+    "release-it": "^19.2.4",
+    "typescript": "^5.9.3"
   },
   "peerDependencies": {
     "@adonisjs/core": "^6.19.0"
   },
   "dependencies": {
-    "pusher": "^5.2.0"
+    "pusher": "^5.3.2"
   },
   "homepage": "https://github.com/mixxtor/adonisjs-pusher#readme",
   "repository": {
@@ -88,12 +88,14 @@
   },
   "release-it": {
     "git": {
-      "requireCleanWorkingDir": true,
-      "requireUpstream": true,
-      "commitMessage": "chore(release): ${version}",
-      "tagAnnotation": "v${version}",
+      "commitMessage": "chore: release v${version}",
+      "tagName": "v${version}",
+      "requireCleanWorkingDir": false,
+      "requireUpstream": false,
       "push": true,
-      "tagName": "v${version}"
+      "pushArgs": [
+        "--follow-tags"
+      ]
     },
     "github": {
       "release": true,
@@ -105,13 +107,70 @@
     },
     "npm": {
       "publish": true,
-      "skipChecks": true
+      "publishPath": ".",
+      "access": "public",
+      "otp": false
+    },
+    "hooks": {
+      "before:init": [
+        "npm run lint",
+        "npm run typecheck"
+      ],
+      "after:bump": [
+        "npm run build"
+      ],
+      "before:release": [
+        "npm test"
+      ],
+      "after:release": [
+        "echo 🎉 Release ${version} completed successfully!"
+      ]
     },
     "plugins": {
       "@release-it/conventional-changelog": {
         "preset": {
-          "name": "angular"
-        }
+          "name": "conventionalcommits",
+          "types": [
+            {
+              "type": "feat",
+              "section": "✨ Features"
+            },
+            {
+              "type": "fix",
+              "section": "🐛 Bug Fixes"
+            },
+            {
+              "type": "perf",
+              "section": "⚡ Performance Improvements"
+            },
+            {
+              "type": "refactor",
+              "section": "♻️ Code Refactoring"
+            },
+            {
+              "type": "docs",
+              "section": "📚 Documentation"
+            },
+            {
+              "type": "test",
+              "section": "🧪 Tests"
+            },
+            {
+              "type": "build",
+              "section": "🏗️ Build System"
+            },
+            {
+              "type": "ci",
+              "section": "👷 CI/CD"
+            },
+            {
+              "type": "chore",
+              "section": "🔧 Maintenance"
+            }
+          ]
+        },
+        "infile": "CHANGELOG.md",
+        "header": "# Changelog\n\nAll notable changes to this project will be documented in this file.\n\n"
       }
     }
   },
