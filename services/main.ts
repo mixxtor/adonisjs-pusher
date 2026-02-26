@@ -1,5 +1,5 @@
 /*
- * @mixxtor/currencyx-adonisjs
+ * @mixxtor/adonisjs-pusher
  *
  * (c) Mixxtor
  *
@@ -11,18 +11,14 @@ import app from '@adonisjs/core/services/app'
 import type Pusher from 'pusher'
 
 /**
- * Currency service with full type inference
+ * Pusher service singleton
  *
  * Usage:
  * ```ts
- * import currency from '@mixxtor/currencyx-adonisjs/services/currency'
+ * import pusher from '@mixxtor/adonisjs-pusher/services/main'
  *
- * // Direct usage - no type casting needed
- * const rates = await currency.latestRates()
- *
- * // Provider switching with type inference
- * const googleProvider = currency.use('google')  // Only configured providers
- * const rates = await googleProvider.latestRates()
+ * // Trigger an event
+ * await pusher.trigger('my-channel', 'my-event', { message: 'hello' })
  * ```
  */
 
