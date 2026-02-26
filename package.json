@@ -70,7 +70,7 @@
     "typescript": "^5.9.3"
   },
   "peerDependencies": {
-    "@adonisjs/core": "^6.19.0"
+    "@adonisjs/core": "^7.0.0"
   },
   "dependencies": {
     "pusher": "^5.3.2"
