@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 
 
+## [2.0.0-next.1](https://github.com/mixxtor/adonisjs-pusher/compare/v2.0.0-next.0...v2.0.0-next.1) (2026-02-26)
+
+### 🐛 Bug Fixes
+
+* update peer dependency for @adonisjs/core to version 7.0.0 ([73db792](https://github.com/mixxtor/adonisjs-pusher/commit/73db7920215aadac81e73ff4636b156697511147))
+
 ## [2.0.0-next.0](https://github.com/mixxtor/adonisjs-pusher/compare/v1.0.0...v2.0.0-next.0) (2026-02-26)
 
 ### 🔧 Maintenance
